@@ -1,0 +1,27 @@
+﻿@model IList<Kusys.Entities.Student>;
+
+@{
+    Layout = "_Layout";
+}
+
+<form method="post">
+    <div class="form-group">
+        <label for="">FirstName</label>
+        <input type="text" class="form-control" name="FirstName" id="FirstName" aria-describedby="FirstName" placeholder="FirstName">
+    </div>
+    <div class="form-group">
+        <label for="">Soyad</label>
+        <input type="text" class="form-control" name="LastName" id="LastName" placeholder="LastName">
+    </div>
+    <button type="submit" class="btn btn-primary">Ekle</button>
+</form>
+
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+            
+
+        });
+    </script>
+}
