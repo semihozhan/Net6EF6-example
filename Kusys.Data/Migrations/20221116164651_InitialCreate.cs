@@ -41,6 +41,8 @@ namespace Kusys.Data.Migrations
                 {
                     StudentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    username = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -61,12 +63,14 @@ namespace Kusys.Data.Migrations
                 name: "StudentCourse",
                 columns: table => new
                 {
+                    StudentCourseId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     StudentId = table.Column<int>(type: "int", nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentCourse", x => x.StudentId);
+                    table.PrimaryKey("PK_StudentCourse", x => x.StudentCourseId);
                     table.ForeignKey(
                         name: "FK_StudentCourse_Courses_CourseId",
                         column: x => x.CourseId,
@@ -95,17 +99,46 @@ namespace Kusys.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 1, "Semih" });
+                values: new object[,]
+                {
+                    { 1, "Admin" },
+                    { 2, "User" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Students",
-                columns: new[] { "StudentId", "BirthDate", "FirstName", "LastName", "RoleID" },
-                values: new object[] { 1, new DateTime(2022, 11, 13, 15, 6, 13, 327, DateTimeKind.Local).AddTicks(812), "Semih", "Özhan", 1 });
+                columns: new[] { "StudentId", "BirthDate", "FirstName", "LastName", "RoleID", "password", "username" },
+                values: new object[] { 1, new DateTime(2022, 11, 16, 19, 46, 50, 886, DateTimeKind.Local).AddTicks(5226), "Semih", "Özhan", 1, "password", "username" });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "StudentId", "BirthDate", "FirstName", "LastName", "RoleID", "password", "username" },
+                values: new object[] { 2, new DateTime(2022, 11, 16, 19, 46, 50, 886, DateTimeKind.Local).AddTicks(5235), "Semih2", "Özhan2", 1, "password", "username" });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "StudentId", "BirthDate", "FirstName", "LastName", "RoleID", "password", "username" },
+                values: new object[] { 3, new DateTime(2022, 11, 16, 19, 46, 50, 886, DateTimeKind.Local).AddTicks(5236), "Semih3", "Özhan3", 1, "password", "username" });
+
+            migrationBuilder.InsertData(
+                table: "StudentCourse",
+                columns: new[] { "StudentCourseId", "CourseId", "StudentId" },
+                values: new object[] { 1, 101, 1 });
+
+            migrationBuilder.InsertData(
+                table: "StudentCourse",
+                columns: new[] { "StudentCourseId", "CourseId", "StudentId" },
+                values: new object[] { 2, 102, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentCourse_CourseId",
                 table: "StudentCourse",
                 column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentCourse_StudentId",
+                table: "StudentCourse",
+                column: "StudentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Students_RoleID",

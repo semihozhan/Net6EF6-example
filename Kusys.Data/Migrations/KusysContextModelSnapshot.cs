@@ -82,7 +82,12 @@ namespace Kusys.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Semih"
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "User"
                         });
                 });
 
@@ -110,6 +115,16 @@ namespace Kusys.Data.Migrations
                     b.Property<int>("RoleID")
                         .HasColumnType("int");
 
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("username")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.HasKey("StudentId");
 
                     b.HasIndex("RoleID");
@@ -120,26 +135,70 @@ namespace Kusys.Data.Migrations
                         new
                         {
                             StudentId = 1,
-                            BirthDate = new DateTime(2022, 11, 13, 15, 6, 13, 327, DateTimeKind.Local).AddTicks(812),
+                            BirthDate = new DateTime(2022, 11, 16, 19, 46, 50, 886, DateTimeKind.Local).AddTicks(5226),
                             FirstName = "Semih",
                             LastName = "Özhan",
-                            RoleID = 1
+                            RoleID = 1,
+                            password = "password",
+                            username = "username"
+                        },
+                        new
+                        {
+                            StudentId = 2,
+                            BirthDate = new DateTime(2022, 11, 16, 19, 46, 50, 886, DateTimeKind.Local).AddTicks(5235),
+                            FirstName = "Semih2",
+                            LastName = "Özhan2",
+                            RoleID = 1,
+                            password = "password",
+                            username = "username"
+                        },
+                        new
+                        {
+                            StudentId = 3,
+                            BirthDate = new DateTime(2022, 11, 16, 19, 46, 50, 886, DateTimeKind.Local).AddTicks(5236),
+                            FirstName = "Semih3",
+                            LastName = "Özhan3",
+                            RoleID = 1,
+                            password = "password",
+                            username = "username"
                         });
                 });
 
             modelBuilder.Entity("Kusys.Entities.StudentCourse", b =>
                 {
-                    b.Property<int>("StudentId")
+                    b.Property<int>("StudentCourseId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentCourseId"), 1L, 1);
 
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.HasKey("StudentId");
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("StudentCourseId");
 
                     b.HasIndex("CourseId");
 
+                    b.HasIndex("StudentId");
+
                     b.ToTable("StudentCourse");
+
+                    b.HasData(
+                        new
+                        {
+                            StudentCourseId = 1,
+                            CourseId = 101,
+                            StudentId = 1
+                        },
+                        new
+                        {
+                            StudentCourseId = 2,
+                            CourseId = 102,
+                            StudentId = 1
+                        });
                 });
 
             modelBuilder.Entity("Kusys.Entities.Student", b =>

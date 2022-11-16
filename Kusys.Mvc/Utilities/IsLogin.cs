@@ -4,20 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Kusys.Mvc.Utilities
 {
-    public class CanAdded : ActionFilterAttribute
+    public class IsLogin : ActionFilterAttribute
     {
         public int Roles { get; set; }
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
            
             bool isCorrect = true;
-            string resultMessage = string.Empty;
 
 
-            if (filterContext.HttpContext.Session.GetInt32("Role") != 1)
+            if (filterContext.HttpContext.Session.GetInt32("User") ==null)
             {
                 isCorrect = false;
-                resultMessage = "Kullanıcının ekleme,silme ve güncelleme yetkisi yok";
             }
             
 
@@ -25,7 +23,7 @@ namespace Kusys.Mvc.Utilities
             {
               
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(
-                             new { controller = "Student", action = "Index" }));
+                             new { controller = "Home", action = "Index" }));
             
             }
             base.OnActionExecuting(filterContext);

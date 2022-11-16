@@ -15,6 +15,7 @@ namespace Kusys.Data.Concreate
         private readonly StudentRepository _studentRepository;
         private readonly CourseRepository _courseRepository;
         private readonly RoleRepository _roleRepository;
+        private readonly StudentCourseRepository _studentCourseRepository;
 
         public UnitOfWork(KusysContext kusysContext)
         {
@@ -26,6 +27,7 @@ namespace Kusys.Data.Concreate
         public IStudentRepository Student => _studentRepository ?? new StudentRepository(_kusysContext);
 
         public IRoleRepository Role => _roleRepository ?? new RoleRepository(_kusysContext);
+        public IStudentCourseRepository StudentCourse => _studentCourseRepository ?? new StudentCourseRepository(_kusysContext);
 
         public async ValueTask DisposeAsync()
         {

@@ -11,6 +11,7 @@ namespace Kusys.Data.Abstract
         ICourseRepository Course { get; }
         IStudentRepository Student { get; }
         IRoleRepository Role { get; }
+        IStudentCourseRepository StudentCourse { get; }
 
         Task<int> SaveAscyn();
     }

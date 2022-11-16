@@ -7,9 +7,8 @@
 <div class="card mb-4 mt-2">
     <div class="card-header">
         <i class="fas fa-table mr-1"></i>
-        Öğrenci Listesi 
+        Öğrenci Listesi
         <input type="button" class="btn btn-success ekle" value="Ekle" />
-        <input type="button" class="btn btn-warning yenile" value="Yenile" />
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -21,6 +20,7 @@
                         <th>LastName</th>
                         <th>BirthDate</th>
                         <th>RoleID</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -30,6 +30,7 @@
                         <th>LastName</th>
                         <th>BirthDate</th>
                         <th>RoleID</th>
+                        <th></th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -41,6 +42,13 @@
                             <td>@item.LastName</td>
                             <td>@item.BirthDate</td>
                             <td>@item.RoleID</td>
+                            <td>
+                                <button type="button" class="btn btn-primary detay-gor" id="@item.StudentId">
+                                    Detay Gör
+                                </button>
+                                <a class="btn btn-success" href="Student/Guncelle/@item.StudentId">Güncelle</a>
+                                <a class="btn btn-warning" href="Student/Delete/@item.StudentId">Sil</a>
+                            </td>
                         </tr>
                     }
 
@@ -50,18 +58,79 @@
     </div>
 </div>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Student Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @section Scripts
     {
     <script>
         $(document).ready(function () {
             $('#studentTable').DataTable();
             $('.ekle').click(function () {
-              
-                  var url = "@Url.Action("Ekle", "Student")";
+
+                var url = "@Url.Action("Ekle", "Student")";
                 window.location.href = url;
             });
 
-            
+            $('.detay-gor').click(function () {
+               
+                var ids = $(this).attr('id');
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetDetail", "Student")",
+                    data: { id: ids },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                    
+
+                        var dataHTML = `
+                               <table border='1'><thead>
+                                        <th>studentId</th>
+                                        <th>firstName</th>
+                                        <th>lastName</th>
+                                        <th>birthDate</th>
+                                        <th>studentCourse</th>
+                                        </thead>
+                                        <tbody><tr>
+                                                                        <td>`+ data.studentId + `</td>
+                                                        <td>`+ data.firstName + `</td>
+                                                        <td>`+ data.lastName + `</td>
+                                                                <td>`+ data.birthDate + `</td>
+                                                                                                                                                <td>`+ JSON.stringify(data.studentCourse ) + `</td>
+                                                </tr>
+                                        </tbody>
+                                </table>
+                                `;
+                        console.log(dataHTML)
+
+                        $("#exampleModal .modal-body").html(dataHTML);
+                        $("#exampleModal").modal("show");
+                    }
+                });
+
+                
+            });
 
         });
     </script>

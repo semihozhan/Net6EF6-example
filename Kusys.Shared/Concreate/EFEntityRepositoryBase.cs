@@ -63,7 +63,7 @@ namespace Kusys.Shared.Concreate
                     query = query.Include(item);
                 }
             }
-            return await query.SingleOrDefaultAsync();
+            return await query.FirstOrDefaultAsync();
         }
 
         public async Task UpdateAsync(TEntity entity)

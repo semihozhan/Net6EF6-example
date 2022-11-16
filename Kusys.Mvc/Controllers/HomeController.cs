@@ -1,4 +1,6 @@
 ﻿using Kusys.Mvc.Models;
+using Kusys.Services.Abstract;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,9 +9,11 @@ namespace Kusys.Mvc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IStudentService _studentService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IStudentService studentService,ILogger<HomeController> logger)
         {
+            _studentService = studentService;
             _logger = logger;
         }
 
@@ -21,10 +25,22 @@ namespace Kusys.Mvc.Controllers
         [HttpPost]
         public IActionResult Index(string username,string password)
         {
-            HttpContext.Session.SetInt32("role", 1);
-            return RedirectToAction("Index", "Student");
-        }
+            var student = _studentService.LoginControl(username, password);
+            if (student.Result.Data != null)
+            {
+                HttpContext.Session.SetInt32("Role", student.Result.Data.RoleID);
+                HttpContext.Session.SetInt32("User", student.Result.Data.StudentId);
+                return RedirectToAction("Index", "Student");
+            }
+            return RedirectToAction("Index", "Home");
 
+        }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("Role");
+            HttpContext.Session.Remove("User");
+            return RedirectToAction("Index", "Home");
+        }
         public IActionResult Privacy()
         {
             return View();

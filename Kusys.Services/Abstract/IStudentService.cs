@@ -15,5 +15,7 @@ namespace Kusys.Services.Abstract
         Task<IResult> Add(Student student);
         Task<IResult> Update(Student student);
         Task<IResult> Delete(Student student);
+
+        Task<IDataResult<Student>> LoginControl(string username, string password);
     }
 }

@@ -45,6 +45,16 @@ namespace Kusys.Services.Concreate
             return new DataResult<Student>(ResultStatus.Error, "Böyle bir öğrenci bulunamadı",null);
         }
 
+        public async Task<IDataResult<Student>> LoginControl(string username,string password)
+        {
+            var student = await _unitofwork.Student.GetAsync(s => s.username == username && s.password== password, s => s.StudentCourse, s => s.Role);
+            if (student != null)
+            {
+                return new DataResult<Student>(ResultStatus.Success, student);
+            }
+            return new DataResult<Student>(ResultStatus.Error, "Böyle bir öğrenci bulunamadı", null);
+        }
+
         public async Task<IDataResult<IList<Student>>> GetAll()
         {
             var student = await _unitofwork.Student.GetAllAsync(null, s => s.StudentCourse, s => s.Role);

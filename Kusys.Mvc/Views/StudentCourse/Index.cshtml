@@ -1,0 +1,65 @@
+﻿@model IList<Kusys.Entities.StudentCourse>;
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="card mb-4 mt-2">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Student Course List
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="studentTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>StudentId</th>
+                        <th>CourseId</th>
+ 
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>StudentId</th>
+                        <th>CourseId</th>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.StudentId</td>
+                            <td>@item.CourseId</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $('#studentTable').DataTable();
+            $('.ekle').click(function () {
+
+                var url = "@Url.Action("Ekle", "Student")";
+                window.location.href = url;
+            });
+
+          
+
+
+
+        });
+    </script>
+}

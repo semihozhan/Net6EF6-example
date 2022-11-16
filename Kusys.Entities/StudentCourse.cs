@@ -9,6 +9,7 @@ namespace Kusys.Entities
 {
     public class StudentCourse : IEntity
     {
+        public int StudentCourseId { get; set; }
         public int StudentId { get; set; }
         public Student Student { get; set; }
         public int CourseId { get; set; }

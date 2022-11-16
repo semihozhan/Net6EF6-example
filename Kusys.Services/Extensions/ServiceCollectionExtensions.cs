@@ -21,6 +21,7 @@ namespace Kusys.Services.Extensions
             serviceCollection.AddScoped<IStudentService, StudentManager>();
             serviceCollection.AddScoped<IRoleService, RoleManager>();
             serviceCollection.AddScoped<ICourseService, CourseManager>();
+            serviceCollection.AddScoped<IStudentCourseService, StudentCourseManager>();
 
             return serviceCollection;
         }

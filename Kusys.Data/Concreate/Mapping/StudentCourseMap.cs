@@ -13,12 +13,25 @@ namespace Kusys.Data.Concreate.Mapping
     {
         public void Configure(EntityTypeBuilder<StudentCourse> builder)
         {
-            builder.HasKey(sc => sc.CourseId);
-            builder.HasKey(sc => sc.StudentId);
+            builder.HasKey(c => c.StudentCourseId);
+            builder.Property(c => c.StudentCourseId).ValueGeneratedOnAdd();
             builder.HasOne<Student>(sc => sc.Student).WithMany(s => s.StudentCourse).HasForeignKey(sc => sc.StudentId);
             builder.HasOne<Course>(sc => sc.Course).WithMany(c => c.StudentCourse).HasForeignKey(sc => sc.CourseId);
 
-        
+            builder.HasData(new StudentCourse
+            {
+                StudentCourseId=1,
+                StudentId = 1,
+                CourseId = 101
+
+            },
+            new StudentCourse
+            {
+                StudentCourseId=2,
+                StudentId = 1,
+                CourseId = 102
+
+            });
 
         }
     }
