@@ -11,10 +11,14 @@ namespace Kusys.Mvc.Controllers
     public class StudentController : Controller
     {
         private readonly IStudentService _studentService;
+        private readonly ICourseService _courseService;
+        private readonly IStudentCourseService _studentCourseService;
 
-        public StudentController(IStudentService studentService)
+        public StudentController(IStudentService studentService, ICourseService courseService, IStudentCourseService studentCourseService)
         {
             _studentService = studentService;
+            _courseService = courseService;
+            _studentCourseService = studentCourseService;
         }
 
         public async Task<IActionResult> Index()
@@ -30,7 +34,7 @@ namespace Kusys.Mvc.Controllers
         [HttpGet]
         public async Task<IActionResult> Ekle()
         {
-
+            ViewBag.courses = _courseService.GetAll().Result.Data;
             return View();
         }
 
@@ -39,11 +43,25 @@ namespace Kusys.Mvc.Controllers
         [CanAdded]
         public async Task<IActionResult> Ekle(Student student)
         {
-            student.RoleID = 1;
+            var courses = Request.Form["skill"]; 
+            var role = Request.Form["role"]; 
+            student.RoleID = Convert.ToInt32(role);
+         
+           
+         
 
             var result = await _studentService.Add(student);
             if (result.ResultStatus == ResultStatus.Success)
             {
+                foreach (var item in courses)
+                {
+                    var studentcourseAdd = _studentCourseService.Add(
+                        new StudentCourse { 
+                            StudentId = result.Data.StudentId,
+                            CourseId=Convert.ToInt32(item) }
+                        );
+                }
+                
                 return RedirectToAction("Index", "Student");
             }
 

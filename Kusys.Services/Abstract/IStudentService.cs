@@ -1,5 +1,6 @@
 ﻿using Kusys.Entities;
 using Kusys.Shared.Utilities.Result.Abstract;
+using Kusys.Shared.Utilities.Result.Concreate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Kusys.Services.Abstract
         //client ile data arası kontrol
         Task<IDataResult<Student>> Get(int studentId);
         Task<IDataResult<IList<Student>>> GetAll();
-        Task<IResult> Add(Student student);
+        Task<IDataResult<Student>> Add(Student student);
         Task<IResult> Update(Student student);
         Task<IResult> Delete(Student student);
 

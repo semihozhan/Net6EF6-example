@@ -21,7 +21,7 @@ namespace Kusys.Services.Concreate
             _unitofwork = unitofwork;
         }
 
-        public async Task<IResult> Add(Student student)
+        public async Task<IDataResult<Student>> Add(Student student)
         {
             await _unitofwork.Student.AddAsync(student);
             await _unitofwork.SaveAscyn();

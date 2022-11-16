@@ -17,6 +17,35 @@
         <label for="">BirthDate</label>
         <input type="date" class="form-control" id="BirthDate" name="BirthDate">
     </div>
+        <div class="form-group">
+            <label for="">Username</label>
+            <input type="text" class="form-control" id="username" name="username">
+        </div>
+        <div class="form-group">
+            <label for="">Password</label>
+            <input type="text" class="form-control" id="password" name="password">
+        </div>
+
+        <div class="form-group">
+                <div style="padding-right:15px;">
+                    <input type="radio" id="Admin" name="role" value="1" />
+                <label for="Admin">Admin</label><br>
+                    <input type="radio" id="User"  name="role" value="2" />
+                <label for="User">User</label><br>
+                </div>
+        </div>
+        <div class="form-group">
+            @foreach (var skill in ViewBag.courses)
+            {
+                <div style="padding-right:15px;">
+                    <input  id="@skill.CourseId" type="checkbox" name="skill" value="@skill.CourseId" />
+                    <label  for="@skill.CourseId">
+                        @skill.CourseName
+                    </label>
+                </div>
+            }
+        </div>
+
     <button type="submit" class="btn btn-primary">Add</button>
 </form>
 </div>
