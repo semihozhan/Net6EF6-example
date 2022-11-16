@@ -16,6 +16,7 @@ namespace Kusys.Services.Extensions
     {
         public static IServiceCollection LoadMyService(this IServiceCollection serviceCollection)
         {
+            //interfaceler için DI verilerinin tanımlanması
             serviceCollection.AddDbContext<KusysContext>();
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<IStudentService, StudentManager>();

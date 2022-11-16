@@ -10,6 +10,7 @@ namespace Kusys.Services.Abstract
 {
     public interface IStudentCourseService
     {
+        //client ile data arası kontrol
         Task<IDataResult<StudentCourse>> Get(int studentId);
         Task<IDataResult<IList<StudentCourse>>> GetAll(int? studentId);
         Task<IResult> Add(StudentCourse student);

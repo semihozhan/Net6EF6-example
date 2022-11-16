@@ -11,6 +11,7 @@ namespace Kusys.Data.Concreate
 {
     public class UnitOfWork : IUnitOfWork
     {
+        //Tüm repositoryler için ayrı tanımlama yerine unitofwork pattern yaratıldı
         private readonly KusysContext _kusysContext;
         private readonly StudentRepository _studentRepository;
         private readonly CourseRepository _courseRepository;

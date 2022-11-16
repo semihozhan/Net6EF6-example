@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Kusys.Services.Abstract
 {
     public interface IRoleService
-    {
+    {//client ile data arası kontrol
         Task<IDataResult<Role>> Get(int roleId);
         Task<IDataResult<IList<Role>>> GetAll();
         Task<IResult> Add(Role role);

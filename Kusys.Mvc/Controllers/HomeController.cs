@@ -25,6 +25,7 @@ namespace Kusys.Mvc.Controllers
         [HttpPost]
         public IActionResult Index(string username,string password)
         {
+            //login giriş success ise session yarat
             var student = _studentService.LoginControl(username, password);
             if (student.Result.Data != null)
             {
