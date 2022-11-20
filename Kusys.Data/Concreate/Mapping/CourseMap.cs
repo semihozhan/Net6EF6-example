@@ -19,24 +19,6 @@ namespace Kusys.Data.Concreate.Mapping
             //builder.HasMany<Student>(c => c.Students).WithMany(r => r.Courses);
             builder.ToTable("Courses");
 
-
-            builder.HasData(new Course
-            {
-                CourseId = 101,
-                CourseName = "Introduction to Computer Science"
-            },new Course
-            {
-                CourseId = 102,
-                CourseName = "Algorithms"
-            },new Course
-            {
-                CourseId = 103,
-                CourseName = "Calculus"
-            },new Course
-            {
-                CourseId = 104,
-                CourseName = "Physics"
-            });
         }
     }
 }

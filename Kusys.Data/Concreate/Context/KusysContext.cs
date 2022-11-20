@@ -1,4 +1,5 @@
 ﻿using Kusys.Data.Concreate.Mapping;
+using Kusys.Data.Extensions;
 using Kusys.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -26,6 +27,8 @@ namespace Kusys.Data.Concreate.Context
             modelBuilder.ApplyConfiguration(new StudentMap());
             modelBuilder.ApplyConfiguration(new CourseMap());    
             modelBuilder.ApplyConfiguration(new StudentCourseMap());
+
+            modelBuilder.Seed();
         }
     }
 }

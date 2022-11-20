@@ -23,39 +23,8 @@ namespace Kusys.Data.Concreate.Mapping
             //builder.HasMany<Course>(s => s.Courses).WithMany(r => r.Students);
             builder.ToTable("Students");
 
-            builder.HasData(new Student
-            {
-                StudentId = 1,
-                username = "username",
-                password = "password",
-                RoleID = 1,
-                BirthDate = DateTime.Now,
-                FirstName = "Semih",
-                LastName = "Özhan",
 
-            },
-             new Student
-             {
-                StudentId = 2,
-                 username = "username2",
-                 password = "password",
-                 RoleID = 1,
-                BirthDate = DateTime.Now,
-                FirstName = "Semih2",
-                LastName = "Özhan2",
-
-            },
-             new Student
-             {
-                StudentId = 3,
-                username = "username3",
-                password = "password",
-                RoleID = 1,
-                BirthDate = DateTime.Now,
-                FirstName = "Semih3",
-                LastName = "Özhan3",
-
-            });
+           
         }
     }
 }

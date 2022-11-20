@@ -17,15 +17,7 @@ namespace Kusys.Data.Concreate.Mapping
             builder.Property(r => r.Id).ValueGeneratedOnAdd();
             builder.ToTable("Roles");
 
-            builder.HasData(new Role
-            {
-                Id=1,
-                Name="Admin"
-            }, new Role
-            {
-                Id = 2,
-                Name = "User"
-            });
+          
 
         }
     }

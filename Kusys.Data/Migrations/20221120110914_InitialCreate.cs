@@ -108,17 +108,17 @@ namespace Kusys.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Students",
                 columns: new[] { "StudentId", "BirthDate", "FirstName", "LastName", "RoleID", "password", "username" },
-                values: new object[] { 1, new DateTime(2022, 11, 16, 19, 46, 50, 886, DateTimeKind.Local).AddTicks(5226), "Semih", "Özhan", 1, "password", "username" });
+                values: new object[] { 1, new DateTime(2022, 11, 20, 14, 9, 14, 845, DateTimeKind.Local).AddTicks(1508), "Semih", "Özhan", 1, "password", "username" });
 
             migrationBuilder.InsertData(
                 table: "Students",
                 columns: new[] { "StudentId", "BirthDate", "FirstName", "LastName", "RoleID", "password", "username" },
-                values: new object[] { 2, new DateTime(2022, 11, 16, 19, 46, 50, 886, DateTimeKind.Local).AddTicks(5235), "Semih2", "Özhan2", 1, "password", "username" });
+                values: new object[] { 2, new DateTime(2022, 11, 20, 14, 9, 14, 845, DateTimeKind.Local).AddTicks(1518), "Semih2", "Özhan2", 1, "password", "username2" });
 
             migrationBuilder.InsertData(
                 table: "Students",
                 columns: new[] { "StudentId", "BirthDate", "FirstName", "LastName", "RoleID", "password", "username" },
-                values: new object[] { 3, new DateTime(2022, 11, 16, 19, 46, 50, 886, DateTimeKind.Local).AddTicks(5236), "Semih3", "Özhan3", 1, "password", "username" });
+                values: new object[] { 3, new DateTime(2022, 11, 20, 14, 9, 14, 845, DateTimeKind.Local).AddTicks(1519), "Semih3", "Özhan3", 1, "password", "username3" });
 
             migrationBuilder.InsertData(
                 table: "StudentCourse",

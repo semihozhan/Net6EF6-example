@@ -33,7 +33,8 @@ namespace Kusys.Mvc.Controllers
                 HttpContext.Session.SetInt32("User", student.Result.Data.StudentId);
                 return RedirectToAction("Index", "Student");
             }
-            return RedirectToAction("Index", "Home");
+            ModelState.AddModelError("LogOnError", "Kullanıcı adı veya şifre hatalı.");
+            return View("Index", "Home");
 
         }
         public IActionResult Logout()

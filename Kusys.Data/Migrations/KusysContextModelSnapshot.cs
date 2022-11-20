@@ -135,7 +135,7 @@ namespace Kusys.Data.Migrations
                         new
                         {
                             StudentId = 1,
-                            BirthDate = new DateTime(2022, 11, 16, 19, 46, 50, 886, DateTimeKind.Local).AddTicks(5226),
+                            BirthDate = new DateTime(2022, 11, 20, 14, 9, 14, 845, DateTimeKind.Local).AddTicks(1508),
                             FirstName = "Semih",
                             LastName = "Özhan",
                             RoleID = 1,
@@ -145,22 +145,22 @@ namespace Kusys.Data.Migrations
                         new
                         {
                             StudentId = 2,
-                            BirthDate = new DateTime(2022, 11, 16, 19, 46, 50, 886, DateTimeKind.Local).AddTicks(5235),
+                            BirthDate = new DateTime(2022, 11, 20, 14, 9, 14, 845, DateTimeKind.Local).AddTicks(1518),
                             FirstName = "Semih2",
                             LastName = "Özhan2",
                             RoleID = 1,
                             password = "password",
-                            username = "username"
+                            username = "username2"
                         },
                         new
                         {
                             StudentId = 3,
-                            BirthDate = new DateTime(2022, 11, 16, 19, 46, 50, 886, DateTimeKind.Local).AddTicks(5236),
+                            BirthDate = new DateTime(2022, 11, 20, 14, 9, 14, 845, DateTimeKind.Local).AddTicks(1519),
                             FirstName = "Semih3",
                             LastName = "Özhan3",
                             RoleID = 1,
                             password = "password",
-                            username = "username"
+                            username = "username3"
                         });
                 });
 

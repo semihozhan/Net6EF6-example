@@ -18,20 +18,7 @@ namespace Kusys.Data.Concreate.Mapping
             builder.HasOne<Student>(sc => sc.Student).WithMany(s => s.StudentCourse).HasForeignKey(sc => sc.StudentId);
             builder.HasOne<Course>(sc => sc.Course).WithMany(c => c.StudentCourse).HasForeignKey(sc => sc.CourseId);
 
-            builder.HasData(new StudentCourse
-            {
-                StudentCourseId=1,
-                StudentId = 1,
-                CourseId = 101
-
-            },
-            new StudentCourse
-            {
-                StudentCourseId=2,
-                StudentId = 1,
-                CourseId = 102
-
-            });
+         
 
         }
     }

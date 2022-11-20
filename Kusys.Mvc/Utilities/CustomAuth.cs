@@ -25,7 +25,7 @@ namespace Kusys.Mvc.Utilities
             {
               
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(
-                             new { controller = "Student", action = "Index" }));
+                             new { controller = "Student", action = "UnAuthorized" }));
             
             }
             base.OnActionExecuting(filterContext);

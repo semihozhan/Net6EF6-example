@@ -118,5 +118,12 @@ namespace Kusys.Mvc.Controllers
             var student =  _studentService.Get(id);
             return Json(student.Result.Data);
         }
+
+
+
+        public IActionResult UnAuthorized()
+        {
+            return View();
+        }
     }
 }
